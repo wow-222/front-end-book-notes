@@ -1,5 +1,7 @@
 <h1 align="center">学习大前端的一些书籍笔记</h1>
 
+![](https://udemy-images.udemy.com/course/750x422/670034_ce04_4.jpg)
+
 ## 这是什么？
 
 我认为学习可以提高你的等级，也可以证明你真的热爱编程！
