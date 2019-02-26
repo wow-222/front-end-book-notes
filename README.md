@@ -1,4 +1,4 @@
-<h1 align="center">学习前端的一些书籍笔记</h1>
+<h1 align="center">学习前端的笔记</h1>
 <div align="center">
   <img src="https://udemy-images.udemy.com/course/750x422/670034_ce04_4.jpg" alt="Front End Book Notes" width="600" />
 </div>
