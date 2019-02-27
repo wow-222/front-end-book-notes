@@ -1,4 +1,4 @@
-## 3.1基本数据类型
+## 3.1 基本数据类型
 `Null、Undefined、String、Number、Boolean`
 ## 3.4.6 `String`
 类型数值、布尔值、对象和字符串值都有`toString()`方法，但`null`和`undefined`值没有这个方法
@@ -23,7 +23,7 @@ var age = 20;
 age++ // ++age
 ```
 
-## 3.6.4 for语句
+## 3.6.4 `for` 语句
 循环嵌套下可以使用：break和continue与label语句联合
 ```javascript
 var num = 0;
@@ -38,7 +38,7 @@ for (var i = 0; i < 10; i++) {
 }
 console.log(num) // 55
 ```
-## 3.6.9 switch语句
+## 3.6.9 `switch` 语句
 switch语句在比较时使用的是全等操作符，不会发生类型转换
 
 ------------
