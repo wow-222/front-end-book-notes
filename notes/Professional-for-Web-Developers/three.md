@@ -4,13 +4,13 @@
 类型数值、布尔值、对象和字符串值都有`toString()`方法，但`null`和`undefined`值没有这个方法
 
 `String()`函数遵循下列转换规则：
-- 如果值有toString()方法，则调用;
+- 如果值有`toString()`方法，则调用;
 - 如果值是null,返回"null";
 - 如果值是undefined,则返回"undefined"
 
 ## 3.5.1 一元操作符
 `-- ++`
-```javascript
+```js
 var num1 = 2,
     num2 = 20,
     num3 = --num1 + num2; // num3之所以等于21是因为num1先减去了1才与num2相加
