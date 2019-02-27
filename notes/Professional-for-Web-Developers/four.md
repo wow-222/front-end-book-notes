@@ -29,7 +29,9 @@ var obj2 = obj1;
 obj1.name = "wa";
 console.log(obj2.name); 	// "wa"
 ```
-![object](https://www.kancloud.cn/book/wow222/study-js/preview/images/screenshot_1551276772686.png "object")
+
+<img src="./images/screenshot_1551276772686.png" />
+
 ### 4.1.3 传递参数
 ECMAScript中的所有函数的参数都是按值传递，访问变量有按值和按引用两种方式，而参数只能按值传递
 
