@@ -41,7 +41,15 @@ obj.name = "newName";
 console.log(obj.name)         // "newName"
 console.log(person.name);     // "name"
 ```
-> 上面我改变了obj的值为新对象(指向了新的引用对象)，并没有改变person的引用，JS不允许直接访问内存中的位置，不能直接操作对象的内存空间，引用类型的值是按引用访问的，不是按引用修改的，是单向的。所以只能操作变量的实际值，明白了吗？
+> 上面我改变了obj的值为新对象(指向了新的引用对象)，并没有改变person的引用，JS不允许直接访问内存中的位置，不能直接操作对象的内存空间，引用类型的值是按引用访问的，不是按引用修改的，是单向的。所以只能操作变量的实际值，明白了吗？再来一个！
+
+```javascript
+var person = new Object();
+var obj = person;
+person.name = "name";
+person = null;  // 指针断开不影响obj
+console.log(obj.name);     // "name"
+```
 
 ### 4.1.3 传递参数
 ECMAScript中的所有函数的参数都是按值传递，访问变量有按值和按引用两种方式，而参数只能按值传递
