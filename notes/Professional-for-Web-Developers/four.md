@@ -108,52 +108,7 @@ var fn2;    // 执行环境产生的，window.fn2 = undefined
 console.log(fn2);   // undefined
 var fn2 = function() {};    // 函数表达式
 ```
-全局代码执行之前，创建一个预先包含全局变量对象的作用域链
-<table>
-   <tr>
-        <td colspan="2">全局环境 — 变量对象</td>
-   </tr>
-   <tr>
-        <td>this</td>
-        <td>window</td>
-   </tr>
-    <tr>
-        <td >a</td>
-        <td >undefined</td>
-    </tr>
-    <tr>
-        <td >fn1</td>
-        <td >function</td>
-    </tr>
-    <tr>
-        <td >fn2</td>
-        <td >undefined</td>
-    </tr>
-</table>
-
-语句执行过程中，在作用域链中查找变量，写入变量的值
-
-<table>
-   <tr>
-        <td colspan="2">全局环境 — 变量对象</td>
-   </tr>
-   <tr>
-        <td>this</td>
-        <td>window</td>
-   </tr>
-    <tr>
-        <td >a</td>
-        <td >10</td>
-    </tr>
-    <tr>
-        <td >fn1</td>
-        <td >function</td>
-    </tr>
-    <tr>
-        <td >fn2</td>
-        <td >function</td>
-    </tr>
-</table>
+![global-execution](./images/global-execution.png "global-execution")
 
 > 上文演示是全局执行环境，与之关联的变量对象为`window`对象，因此所有全局变量和函数都是作为`window`对象的属性和方法创建的。
 **全局执行环境直到应用程序退出——例如关闭网页或浏览器时，变量和函数定义才会被销毁**
