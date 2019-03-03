@@ -108,10 +108,11 @@ var fn2;    // 执行环境产生的，window.fn2 = undefined
 console.log(fn2);   // undefined
 var fn2 = function() {};    // 函数表达式
 ```
+执行环境
 
 <table>
    <tr>
-        <td colspan="2">全局变量对象</td>
+        <td colspan="2">全局环境 — 变量对象</td>
    </tr>
    <tr>
         <td>this</td>
@@ -128,6 +129,30 @@ var fn2 = function() {};    // 函数表达式
     <tr>
         <td >fn2</td>
         <td >undefined</td>
+    </tr>
+</table>
+
+语句执行后进行赋值
+
+<table>
+   <tr>
+        <td colspan="2">全局环境 — 变量对象</td>
+   </tr>
+   <tr>
+        <td>this</td>
+        <td>window</td>
+   </tr>
+    <tr>
+        <td >a</td>
+        <td >10</td>
+    </tr>
+    <tr>
+        <td >fn1</td>
+        <td >function</td>
+    </tr>
+    <tr>
+        <td >fn2</td>
+        <td >function</td>
     </tr>
 </table>
 
