@@ -133,7 +133,7 @@ function compare(value1, value2) {
 var result = compare(5, 10);
 ```
 
-![fun-execution](./images/fun-execution.png "fun-execution")
+![fun-execution](./images/fun-execution.jpg "fun-execution")
 
 ## 4.3 执行环境及作用域
 执行环境定义了变量或函数有权访问的其他数据，决定了它们各自的行为。每个执行环境都有一个与之关联的**变量对象**，环境中定义的所有变量和函数都保存在这个对象中。虽然无法访问这个对象，但解析器在处理数据时会在后台使用它
