@@ -68,7 +68,7 @@ console.log(person.name)	// name
 ```
 如果person是按引用传递的，那么person就会自动被修改为其name属性值为"newName"的新对象，但是，最后显示的值仍然是name,这说明即时在函数内部修改了参数的值，但原始的引用仍然保持不变.实际上，当在函数内部重写obj时，这个变量引用是一个局部对象。而局部变量会在函数调用完毕时出栈立即被销毁释放内存.
 
-## 4.2 执行环境
+## 4.2 执行环境及作用域
 
 执行环境定义了变量或函数有权访问的其他数据，决定了它们各自的行为。
 
@@ -156,18 +156,23 @@ changeColor(10);
 
 ```js
 var a = 10;
-function fn1() {
-    console.log(a);
+function fn1(c) {
+    var b = a;
+    console.log(b);
+    console.log(c);
 }
 
 function fn2(fn) {
     var a = 20;
-    fn();
+    var c = 40;
+    fn(c);
 }
 
 fn2(fn1);
 ```
+![fun-execution2](./images/fun-execution2.jpg "fun-execution2")
 
+> 对于上方的例子，`fn1()`的作用域链中包含3个变量对象：自身的变量对象、`fn2`的变量对象、全局变量对象.`fn1()`的局部环境开始时会先在自己的变量对象中搜索变量和函数名，如果搜索不到则再搜索上一级作用域链。`fn2`的作用域链只包含两个对象：它自己的变量对象和全局变量对象。它不能访问`fn1()`的环境。
 
 ## 4.3 执行环境及作用域
 
