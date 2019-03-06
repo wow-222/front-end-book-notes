@@ -158,8 +158,8 @@ changeColor(10);
 var a = 10;
 function fn1(c) {
     var b = a;
-    console.log(b);
-    console.log(c);
+    console.log(b); // 10
+    console.log(c); // 40
 }
 
 function fn2(fn) {
