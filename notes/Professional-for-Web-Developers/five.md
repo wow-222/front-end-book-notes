@@ -171,3 +171,64 @@ o.sayColor();    // blue
 > 函数的名字仅仅是一个包含指针的变量而已。因此，即使是在不同的环境中执行，全局的sayColor()函数与o.sayColor()指向的仍然是同一个函数。
 
 ![this-arrow](./images/this-arrow.jpg "this-arrow")
+
+### 5.5.5 函数属性和方法
+函数也是对象，因此也有属性和方法，每个函数都包含两个属性：length和prototype
+
+- length属性表示函数希望接收的命名参数的个数
+```js
+function sayName(name) {
+    console.log(name);
+}
+console.log(sayName.length) // 1
+```
+- 对于ECMAScript中的引用类型，prototype是保存它们所有实例方法的真正所在
+- 每个函数都包含两个非继承而来的方法：apply()和call()，等于设置函数体内this对象的值
+- apply()方法接收两个参数：一个是在其中运行函数的作用域，另一个是参数数组。其中，第二个参数是Array的实例，也可以是arguments对：例如：
+```js
+function sum(num1, num2) {
+    return num1 + num2;
+}
+function callSum1(num1, num2) {
+    return sum.apply(this,arguments);
+}
+function callSum2(num1, num2) {
+    return sum.apply(this,[num1, num2]);
+}
+console.log(callSum1(10,10))     // 20
+console.log(callSum2(10,10))    // 20
+```
+> 上面例子中，函数是在全局作用域调用的，所以传入的this就是window对象
+
+- call()方法和apply唯一的区别是第二个参数传入的格式不同，例如：
+```js
+function sum(num1, num2) {
+    return num1 + num2;
+}
+function callSum(num1, num2) {
+    return sum.call(this, num1, num2);
+}
+console.log(callSum(10,10))     // 20
+```
+apply和call真正的用武之地
+```js
+window.color = "red";
+var o = { color: "blue" };
+function sayColor() {
+    console.log(this.color);
+}
+sayColor.call(this)    // red;
+sayColor.call(window)    // red;
+sayColor.call(o)    // blue;
+```
+bind()：这个方法会创建一个函数的实例，其this值会被绑定给传给bind函数的值
+```js
+window.color = "red";
+var o = { color: "blue" };
+function sayColor(){
+    console.log(this.color);
+}
+var objectSayColor = sayColor.bind(o);
+objectSayColor();    // blue
+```
+> 每个函数继承的toLocaleString()和toString()方法始终都返回函数的代码
