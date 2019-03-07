@@ -129,4 +129,45 @@ console.log(obj2.name); 	// "wa"
 **引用类型值：** 当从一个变量向另一个变量复制引用类型的值时，同样也会把该值复制到新变量分配的位置上。不同的是，这个值的副本实际是一个指针，而这个指针指向存储在堆中的一个对象。两个变量将引用同一个对象
 ![object](./images/screenshot_1551276772686.png "object")
 
+上图里的`Object`可以想象成`Function`对象，变量对象可以想像成函数名。JS不允许直接访问内存中的位置，不能直接操作对象的内存空间，不允许修改引用地址，只能修改引用类型的值(或者是指针)
+
 > 使用不带圆括号的函数名是访问函数指针，而非调用函数。此时，`anotherSum`和`sum`的指针都指向了同一个函数(对象)，因此`anotherSum()`也可以调用返回结果，`sum`设置为`null`,就与函数(对象)"断绝关系"，由于`anotherSum`在新变量分配的位置上，它的指针可没有断，所以仍然可以正常调用`anotherSum()`
+
+### 5.5.4 函数内部属性
+在函数内部，有两个特殊的对象：`arguments`和`this`
+
+- `arguments`是一个类数组对象，包含着传入函数中的所有参数，这个对象有一个名叫`callee`的属性，该属性是一个指针，指向拥有这个`arguments`对象的函数。例如:
+```js
+function factorial(num) {
+    if(num <= 1){
+        return 1;
+    } else {
+        return num * arguments.callee(num - 1)
+    }
+}
+var trueFactorial = factorial;
+factorial = function() {
+    return 0;
+}
+console.log(trueFactorial(5));    // 120
+console.log(factorial(5));    // 0
+```
+> 这样的写法好处在于消除了这个递归函数的执行与函数名`factorial`紧密耦合的现象.
+变量`trueFactorial`获得了`factorial`的值，实际上是在另外一个位置上保存了一个函数的指针
+
+函数内部另一个特殊对象是`this`，`this`引用的是函数据以执行的环境对象
+```js
+window.color = "red";
+var o = {color: "blue"};
+function sayColor() {
+    console.log(this.color);
+}
+sayColor(); // red
+o.sayColor = sayColor;
+o.sayColor();    // blue
+```
+在函数调用之前，`this`的值是不确定的，因为`this`可能会在代码执行过程中引用不同的对象。当在全局作用域中调用`sayColor()`时，`this`引用的是全局对象，对`this.color`求值会转换为`window.color`。当把这个函数赋值给对象`o`并调用`o.sayColor()`时，`this`引用的是对象`o`，`this.color`会转换为`o.color`
+
+> 函数的名字仅仅是一个包含指针的变量而已。因此，即使是在不同的环境中执行，全局的sayColor()函数与o.sayColor()指向的仍然是同一个函数。
+
+![this-arrow](./images/this-arrow.jpg "this-arrow")
