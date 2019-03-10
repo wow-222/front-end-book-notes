@@ -232,3 +232,109 @@ var objectSayColor = sayColor.bind(o);
 objectSayColor();    // blue
 ```
 > 每个函数继承的toLocaleString()和toString()方法始终都返回函数的代码
+
+## 5.6 基本包装类型
+ECMAScript提供了3个特殊的引用类型：Boolean、Number和String
+每当读取一个基本类型值时，后台就会创建一个对应的基本包装类型的对象，从而让我们能够调用一些方法来操作这些数据
+```js
+var s1 = "some text";
+var s2 = s1.substring(2);
+```
+当第二行代码访问s1时，访问过程处于一种读取模式，也就是要从内存中读取这个字符串的值。而在读取模式中访问字符串时，后台都会自动完成下列处理：
+
+1. 创建String类型的一个实例；
+2. 在实例上调用指定的方法；
+3. 销毁这个实例。
+```js
+var s1 = new String("some text");
+var s2 = s1.substring(2);
+s1 = null;
+```
+> 经过上面处理，基本的字符串值就变得跟对象一样了。
+上面三个步骤也分别适用于Boolean、Number类型对应的布尔值和数字值
+
+引用类型与基本包装类型的主要就是对象的生存期。使用new操作符创建的引用类型的实例，在执行流离开当前作用域之前都一直保存在内存中。而自动创建的基本包装类型的对象，则只存在于一行代码的执行瞬间，然后立即被销毁
+```js
+var s1 = "some text";
+s1.color = "red";
+console.log(s1.color); // undefined
+```
+
+```js
+var obj = new Number(25);
+console.log(typeof obj) // object
+```
+> 对基本包装类型的实例调用typeof会返回"object",而且所有基本包装类型的对象都会被转换为布尔值true
+
+Boolean类型
+
+```js
+var falseObject = new Boolean(false);
+var result = falseObject && true;
+console.log(result)    // true
+
+var falseValue = false;
+result = falseValue && true;
+console.log(result)    // false
+
+console.log(typeof falseObject)    // object
+console.log(typeof falseValue)    // boolean
+console.log(falseObject instanceof Boolean)    // true
+console.log(falseValue instanceof Boolean)    // false
+```
+> 理解基本类型的布尔值与Boolean对象之间的区别非常重要
+
+## 5.7 单体内置对象
+内置对象：不依赖于宿主环境的对象，这些对象在ECMAScript程序执行之前就已经存在了。不必显示地实例化内置对象，因为它们已经实例化了。例如：Object、Array、String，还定义了两个单体内置对象：Global和Math
+
+### 5.7.1 Global对象
+不属于任何其他对象的属性和方法，都是Global对象的属性；所有在全局作用域中定义的属性和函数，都是Global对象的属性，例如：isNaN()、isFinite()、parseInt()、parseFloat()
+
+Global(window)对象的属性
+![global](./images/global.jpg "global")
+
+### 5.7.2 Math对象
+- min()和max方法
+`var max = Math.max(3, 54);`
+找到数组中的最大或最小值
+```js
+var values = [1, 2, 3, 4];
+var max = Math.max,apply(Math, values);
+```
+- 舍入方法
+Math.ceil()向上舍入，数值向上舍入最为接近的整数;
+Math.floor()向下舍入，数值向下舍入最为接近的整数;
+Math.round()标准舍入，数值四舍五入最为接近的整数;
+```js
+console.log(Math.ceil(25.9));    // 26
+console.log(Math.ceil(25.5));    // 26
+console.log(Math.ceil(25.1));    // 26
+
+console.log(Math.round(25.9));    // 26
+console.log(Math.round(25.5));    // 26
+console.log(Math.round(25.1));    // 25
+
+console.log(Math.floor(25.9));    // 25
+console.log(Math.floor(25.5));    // 25
+console.log(Math.floor(25.1));    // 25
+```
+> 对于都有介于25和26(不包括26)之间的数值，Math.ceil()始终返回26
+Math.round()方法只在数值大于等于25.5时返回26；否则返回25
+Math.floor()对所有介于25和26(不包括26)之间的数值都返回25
+
+- random()方法
+Math.random()方法返回介于0和1之间一个随机数，不包括0和1
+从某个整数范围内随机选择一个值：
+> 值 = Math.floor(Math.random() * 可能值的总数 + 第一个可能的值)
+
+**小结：**
+
+- Object是一个基础类型，其他所有类型都从Object继承了基本的行为；
+- Array类型是一组值的有序列表
+- Date类型提供了有关日期和时间的信息
+- RegExp类型是ECMAScript支持正则表达式的一个接口
+- 函数实际上是Function类型的实例
+- 三种基本包装类型：Boolean、Number、String,以下是它们共同的特征：
+1. 每个包装类型都映射到同名的基本类型
+2. 在读取模式下访问基本类型值时，就会创建对应的基本包装类型的一个对象
+3. 操作基本类型值的语句一执行完毕，就会立即销毁新创建的包装对象

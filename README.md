@@ -28,6 +28,11 @@
 1. React源码
 1. Linux
 
+- [RegExp](notes/RegExp/README.md)
+- 图解作用域
+- 图解闭包
+
+
 ## 翻译
 
 - [English](README.en.md)
