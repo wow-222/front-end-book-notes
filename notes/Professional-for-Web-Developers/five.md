@@ -295,11 +295,13 @@ Global(window)对象的属性
 
 ### 5.7.2 Math对象
 - min()和max方法
+
 `var max = Math.max(3, 54);`
+
 找到数组中的最大或最小值
 ```js
 var values = [1, 2, 3, 4];
-var max = Math.max,apply(Math, values);
+var max = Math.max.apply(Math, values);
 ```
 - 舍入方法
 Math.ceil()向上舍入，数值向上舍入最为接近的整数;
