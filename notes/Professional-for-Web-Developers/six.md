@@ -259,9 +259,8 @@ console.log(friend instanceof Object)    // true
 console.log(friend instanceof Person)    // true
 console.log(friend.constructor == Person)    // false
 console.log(friend.constructor == Object)    // true
-constructor最好指向最初的构造函数，可以像下面这样使用：
 ```
-
+constructor最好指向最初的构造函数，可以像下面这样使用：
 ```js
 function Person(){}
 Person.prototype = {
