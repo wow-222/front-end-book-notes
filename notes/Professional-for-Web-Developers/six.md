@@ -239,3 +239,167 @@ console.log(p1Keys);    // ["name"]
 var keys = Object.getOwnPropertyNames(Person.prototype);    // 获取对象上所有的实例属性,无论是否可枚举
 console.log(keys);    // ["constructor", "name", "age", "sayName"]
 ```
+
+**更简单的原型语法**
+```js
+function Person(){}
+Person.prototype = {
+    name: "Nics",
+    age: 24,
+    sayName: function() {
+        console.log(this.name);
+    }
+}
+```
+上面代码中，Person.prototype设置为等于一个以对象字面量形式创建的新对象。最终结果相同，但有一个例外：constructor属性不再指向Person了。每创建一个函数，就会同时创建它的prototype对象，这个对象自动获得constructor属性。而这里使用的语法，本质上完全重写了默认的protytpe对象，因此constructor属性也就变成了新对象的constructor属性(指向Object构造函数)，不再指向Person函数。
+
+```js
+var friend = new Person();
+console.log(friend instanceof Object)    // true
+console.log(friend instanceof Person)    // true
+console.log(friend.constructor == Person)    // false
+console.log(friend.constructor == Object)    // true
+constructor最好指向最初的构造函数，可以像下面这样使用：
+```
+
+```js
+function Person(){}
+Person.prototype = {
+    constructor: Person,
+    name: "Nics",
+    age: 24,
+    sayName: function() {
+        console.log(this.name);
+    }
+}
+```
+> 注意，以上面这种方式重设constructor属性会导致它的[[Enumerable]]特性被设置为true.默认情况下，原生的constructor属性是不可枚举的。
+
+```js
+// 重设构造函数
+Object.defineProperty(Person.prototype, "constructor", {
+    enumerable: false,
+    value: Person
+})
+```
+原型的动态性
+调用构造函数时会为实例添加一个指向最初原型的[[Prototype]]指针，如果重写整个原型对象（把原型修改为另外一个对象）就等于切掉了构造函数与最初原型之间的联系：
+
+> 实例中的指针仅指向原型，而不指向构造函数
+
+```js
+function Person() {};
+var friend = new Person();
+Person.prototype = {
+    constructor: Person,
+    name: "Nics",
+    age: 24,
+    sayName: function() {
+        console.log(this.name);
+    }
+};
+friend.sayName();    // error
+```
+![prototype](./images/prototype1.png "prototype")
+
+> 重写原型对象切掉了现有原型与任何之前已经存在的对象实例之间的联系;它们引用的仍然是最初的原型。上面的例子可以把实例化那一步放在重写原型对象之后
+
+### 6.2.4 组合使用构造函数模式和原型模式
+构造函数模式用于定义实例属性，而原型模式用于定义方法和共享的属性。结果，每个实例都会有自己的一份实例属性的副本，但同时又共享着对方法的引用，最大限度地节省了内存。
+
+```js
+function Person(name, age, job) {
+    this.name = name;
+    this.age = age;
+    this.jon = job;
+    this.friends = ["Shelby", "ssw"];
+}
+Person.prototype = {
+    constructor: Person,
+    sayName: function() {
+        console.log(this.name);
+    }
+}
+var person1 = new Person("Nicholas", 29, "WEB");
+var person2 = new Person("Greg", 27, "Doctor");
+
+person1.friends.push("Van");
+console.log(person1.friends)    // Shelby,ssw,Van
+console.log(person2.friends)    // Shelby,ssw
+console.log(person1.friends === person2.friends)    // false
+console.log(person1.sayName === person2.sayName)    // true
+```
+> 这种模式，使用广泛、认可度最高的一种创建自定义类型的方法
+
+### 6.2.5 动态原型模式
+通过检查某个应该存在的方法是否有效，来决定是否需要初始化原型。例如：
+
+```js
+function Person(name, age) {
+    this.name = name;
+    this.age = age;
+    if(typeof this.sayName != "function") {
+        Person.prototype.sayName = function() {
+            console.log(this.name);
+        }
+    }
+}
+var friend = new Person("wa", 21);
+friend.sayName();
+```
+这里只在sayName()方法不存在的情况下，才会将它添加到原型中，这里对原型所做的修改，能够立即在所有实例中得到反映，因此，这种方法确实非常完美
+
+### 6.2.7 稳妥构造函数模式
+稳妥对象，指的是没有公共属性，而且其方法也不引用this的对象
+
+```js
+function Person(name, age, job) {
+    // 可以在这里定义私有变量和函数
+    return {
+        sayName: function() {
+            console.log(name);
+        }
+    };
+}
+var friend = Person("wa");
+friend.sayName();    // wa
+```
+
+## 6.3 继承
+由于函数没有签名，在ECMAScript中无法实现接口继承。ECMAScript只支持实现继承，而且其实现继承主要是依靠原型链来实现的。
+
+### 6.3.1 原型链
+实现原型链有一种基本模式，代码如下：
+
+```js
+function SuperType(){
+    this.property = true;
+}
+SuperType.prototype.getSuperValue = function(){
+    return this.property;
+}
+function SubType(){
+    this.subproperty = false;
+}
+// 继承了SuperType
+SubType.prototype = new SuperType();
+SubType.prototype.getSubValue = function() {
+    return this.subproperty;
+}
+var instance = new SubType();
+console.log(instance.getSuperValue())    // true
+```
+> 上面的继承是通过场景SuperType的实例，并将该实例赋给SubType.prototype实现的。实现的本质是重写原型对象，SubType的原型指向了另一个对象——SuperType的原型，代之以一个新类型的实例
+
+![prototype](./images/prototype2.png "prototype")
+
+instance指向SubType的原型，SubType的原型又指向SuperType的原型。getSuperValue()方法仍然还在SuperType.prototype中，但property则位于SyubTpe.prototype中。这是因为property是一个实例属性，而getSuperValue()则是一个原型方法。既然SubType.prototype现在是SuperType的实例，那么property当然就位于该实例中。注意instance.constructor现在指向的是SuperType,这是因为原来SubType.prototype中的constructor被重写了。
+
+> 调用instance.getSuperValue()会经历三个步骤：1）搜索实例；2）搜索SubType.prototype；3）搜索SuperType.prototype,最后一步才会找到该方法
+
+**完整的原型链**
+
+![prototype](./images/prototype3.png "prototype")
+
+> 所有引用类型默认都继承了Object,所有函数的默认原型都是Object的实例,因此默认原型都会包含一个内部指针，指向Object.prototype。
+subType继承了SuperType，而SuperType继承Object。当调用instance.toString()时，实际上调用的是保存在Object.prototype中的那个方法.
