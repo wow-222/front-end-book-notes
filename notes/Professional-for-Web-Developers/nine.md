@@ -1,8 +1,8 @@
 ## 用户代理字符串
-safari: 2003年，Apple公司发布自己的Web浏览器，名字为Safari。safari的呈现引擎叫WebKit,是Linux平台中Konqueror浏览器的呈现引擎KHTML的一个分支。几年后，WebKit独立出来专注于呈现引擎的开发<br>
-Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/604.5.6 (KHTML, like Gecko) Version/11.0.3 Safari/604.5.6<br>
-chrome:谷歌公司的Chrome浏览器以WebKit作为呈现引擎，但使用了不同的JS引擎<br>
-Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36
+- safari: 2003年，Apple公司发布自己的Web浏览器，名字为Safari。safari的呈现引擎叫WebKit,是Linux平台中Konqueror浏览器的呈现引擎KHTML的一个分支。几年后，WebKit独立出来专注于呈现引擎的开发<br>
+- Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/604.5.6 (KHTML, like Gecko) Version/11.0.3 Safari/604.5.6<br>
+- chrome:谷歌公司的Chrome浏览器以WebKit作为呈现引擎，但使用了不同的JS引擎<br>
+- Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36
 
 ## 识别代码
 ```js
