@@ -1,5 +1,5 @@
 ## 3.1 基本数据类型
-`Null、Undefined、String、Number、Boolean`
+`Null、Undefined、String、Number、Boolean、symbol`
 ## 3.4.6 `String`
 类型数值、布尔值、对象和字符串值都有`toString()`方法，但`null`和`undefined`值没有这个方法
 
