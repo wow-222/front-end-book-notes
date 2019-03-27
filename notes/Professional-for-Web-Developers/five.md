@@ -266,7 +266,7 @@ console.log(typeof obj) // object
 ```
 > 对基本包装类型的实例调用typeof会返回"object",而且所有基本包装类型的对象都会被转换为布尔值true
 
-Boolean类型
+**Boolean类型**
 
 ```js
 var falseObject = new Boolean(false);
@@ -282,7 +282,13 @@ console.log(typeof falseValue)    // boolean
 console.log(falseObject instanceof Boolean)    // true
 console.log(falseValue instanceof Boolean)    // false
 ```
-> 理解基本类型的布尔值与Boolean对象之间的区别非常重要
+> 理解基本类型的布尔值与Boolean对象之间的区别非常重要，Boolean类型的实例重写了valueOf()方法，返回基本类型值true和false，重写了toString()方法，返回字符串"true"和"false"
+
+**Number类型**
+> Number类型重写了valueOf()、toString()和toLocaleString()方法
+
+**String类型**
+> String类型继承了Object原型的valueOf()、toLocaleString()和toString()方法
 
 ## 5.7 单体内置对象
 内置对象：不依赖于宿主环境的对象，这些对象在ECMAScript程序执行之前就已经存在了。不必显示地实例化内置对象，因为它们已经实例化了。例如：Object、Array、String，还定义了两个单体内置对象：Global和Math
