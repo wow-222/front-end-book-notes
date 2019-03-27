@@ -17,7 +17,6 @@
 ## 目录
 
 1. [JavaScript高级程序设计(第3版)](notes/Professional-for-Web-Developers/README.md)
-1. [你不知道的JavaScript(中卷)](notes/You-Don't-Know-JS/README.md)
 1. JavaScript语言精粹(修订版)
 1. HTTP协议
 1. Web性能优化
