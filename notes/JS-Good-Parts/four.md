@@ -4,7 +4,9 @@
 ### 扩展类型功能
 ```js
 Function.prototype.method = function(name, func) {
-    this.prototype[name] = func;
+    if(!this.prototype[name]) {
+        this.prototype[name] = func;
+    }
     return this;
 };
 // 扩展移除字符串首尾空白方法
