@@ -480,7 +480,7 @@ function inheritPrototype(subType, superType) {
         F.prototype = superType.prototype;
         var prototype = new F();    // prototype.__proto__ === superType.prototype
         prototype.constructor = subType;
-        subType.prototype = prototype;  // 所以Son.prototype.__proto__ === Parent.prototype
+        subType.prototype = prototype;  // 所以subType.prototype.__proto__ === superType.prototype
     */
 }
 function SuperType(name) {
