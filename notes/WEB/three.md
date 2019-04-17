@@ -19,7 +19,8 @@
 ![](./images/e44fd47015b147a2d420c6419ad6a7ee_1011x616.png)
 ![](./images/68965ef3c81592015d2968266a200fdb_1020x621.png)
 1. 避免使用触发重绘、回流的css属性
-2. 将需要频繁触发回流和重绘的元素限制在单独的图层之内，减少回流与重绘的影响范围<br>
+2. 将需要频繁触发回流和重绘的元素限制在单独的图层之内，减少回流与重绘的影响范围
+
 单独图层css: `transform: translateZ(0) / will-change: transform;`<br>
 单独图层element: `<video> <canvas>`
 ### 优化总结
