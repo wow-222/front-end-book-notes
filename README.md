@@ -22,7 +22,7 @@
 1. [Web性能优化](notes/WEB/README.md)
 1. Zepot源码
 1. 数据结构与算法
-1. 设计模式
+1. [设计模式](notes/Design/README.md)
 1. Vue源码
 1. React源码
 1. Linux
