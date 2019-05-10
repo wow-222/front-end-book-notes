@@ -10,6 +10,7 @@ const babel = require('rollup-plugin-babel');
 function server() {
     return connect.server({
         root: 'dist',
+        port: 9000,
         livereload: true
     });
 }
