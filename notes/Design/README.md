@@ -3,3 +3,5 @@
 - [设计原则](two.md)
 - [工厂模式](three.md)
 - [单例模式](four.md)
+- [适配器模式](five.md)
+- [装饰器模式](six.md)
