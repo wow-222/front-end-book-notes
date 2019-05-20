@@ -6,3 +6,4 @@
 - [适配器模式](five.md)
 - [装饰器模式](six.md)
 - [代理模式](seven.md)
+- [观察者模式](eight.md)
