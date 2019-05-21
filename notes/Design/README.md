@@ -7,3 +7,4 @@
 - [装饰器模式](six.md)
 - [代理模式](seven.md)
 - [观察者模式](eight.md)
+- [迭代器模式](nine.md)
