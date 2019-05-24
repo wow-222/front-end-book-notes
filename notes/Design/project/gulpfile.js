@@ -35,14 +35,14 @@ function build() {
     return src(['src/*.js', 'src/*.html'])
     .pipe(gulpif(isJavaScript,
         babel({ presets: ['@babel/env'] }), 
-        htmlreplace({ 'js': 'main.js'}))
+        htmlreplace({ 'js': 'index.js'}))
     )
     .pipe(dest('dist'));
 }
 
 async function roll() {
     const bundle = await rollup.rollup({
-        input: 'src/main.js',
+        input: 'src/index.js',
         plugins: [
             resolve(),
             babel({
