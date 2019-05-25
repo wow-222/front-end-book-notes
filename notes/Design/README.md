@@ -9,3 +9,4 @@
 - [观察者模式](eight.md)
 - [迭代器模式](nine.md)
 - [状态模式](ten.md)
+- [综合案例](project/src/index.js)
