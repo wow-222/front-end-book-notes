@@ -22,12 +22,12 @@ class Cart {
 
 // 返回单例
 let getCart = (function(){
-    let Cart;
+    let cart;
     return function() {
-        if(!Cart) {
-            Cart = new Cart();
+        if(!cart) {
+            cart = new Cart();
         }
-        return Cart;
+        return cart;
     }
 })();
 export default getCart

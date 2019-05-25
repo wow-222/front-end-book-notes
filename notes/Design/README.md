@@ -8,3 +8,4 @@
 - [代理模式](seven.md)
 - [观察者模式](eight.md)
 - [迭代器模式](nine.md)
+- [状态模式](ten.md)

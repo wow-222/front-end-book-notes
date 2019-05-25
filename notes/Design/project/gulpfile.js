@@ -6,6 +6,7 @@ const htmlreplace = require('gulp-html-replace');
 const del = require('delete');
 const resolve = require('rollup-plugin-node-resolve');
 const babel = require('rollup-plugin-babel');
+const commonjs = require('rollup-plugin-commonjs');
 
 function server() {
     return connect.server({
@@ -44,6 +45,7 @@ async function roll() {
     const bundle = await rollup.rollup({
         input: 'src/index.js',
         plugins: [
+            commonjs(),
             resolve(),
             babel({
                 exclude: 'node_modules/**' // only transpile our source code
@@ -62,7 +64,7 @@ if (process.env.NODE_ENV === 'production') {
     exports.default = series(clean, build);
 } else {
     // 监听html模板和js文件的改变
-    watch(['src/*.js'], { ignoreInitial: false }, series(roll, livereload));
+    watch(['src/*.js', 'src/*/*.js', 'src/demo/*/*.js'], { ignoreInitial: false }, series(roll, livereload));
     watch(['src/*.html'], { ignoreInitial: false }, series(livereload));
     exports.default = series(clean, server,roll);
 }

@@ -23,11 +23,13 @@
     "gulp-uglify": "^3.0.2",
     "jshint": "^2.10.2",
     "lazypipe": "^1.0.2",
-    "rollup": "^1.10.1",
+    "rollup": "^1.12.3",
     "rollup-plugin-babel": "^4.3.2",
+    "rollup-plugin-commonjs": "^10.0.0",
     "rollup-plugin-node-resolve": "^4.2.3"
   },
   "dependencies": {
+    "javascript-state-machine": "^3.1.0",
     "jquery": "^3.4.1"
   }
 }

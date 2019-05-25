@@ -8,7 +8,7 @@ export default class List {
 
     // 获取数据
     loadData() {
-        return fetch().then(result => {
+        return fetch('./test.json').then(result => {
             return result.json();
         })
     }
