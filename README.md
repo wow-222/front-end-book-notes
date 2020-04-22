@@ -32,6 +32,7 @@
 1. [节流](../../issues/5)
 2. [定时器](../../issues/6)
 3. [数组去重](../../issues/7)
+4. [类型判断](../../issues/8)
 
 - [RegExp](notes/RegExp/README.md)
 - 图解作用域
