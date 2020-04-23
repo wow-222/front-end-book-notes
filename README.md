@@ -17,27 +17,28 @@
 ## 目录
 
 1. [JavaScript高级程序设计(第3版)](notes/Professional-for-Web-Developers/README.md)
-1. [JavaScript语言精粹(修订版)](notes/JS-Good-Parts/README.md)
-1. [HTTP协议](notes/HTTP/README.md)
-1. [Web性能优化](notes/WEB/README.md)
-1. Zepot源码
-1. 数据结构与算法
-1. [设计模式](notes/Design/README.md)
-1. Vue源码
-1. React源码
-1. Linux
+2. [JavaScript语言精粹(修订版)](notes/JS-Good-Parts/README.md)
+3. [HTTP协议](notes/HTTP/README.md)
+4. [Web性能优化](notes/WEB/README.md)
+5. [设计模式](notes/Design/README.md)
+6. TypeScript
+7. 数据结构与算法
+8. Zepot源码
+9. Vue源码
+10. React源码
+11. Linux
 
 ## 专题
-
-1. [节流](../../issues/5)
-2. [定时器](../../issues/6)
-3. [数组去重](../../issues/7)
-4. [类型判断](../../issues/8)
-5. [尾递归](../../issues/9)
+1. [作用域](../../issues/10)
+2. [闭包](../../issues/11)
+3. [节流](../../issues/5)
+4. [定时器](../../issues/6)
+5. [数组去重](../../issues/7)
+6. [类型判断](../../issues/8)
+7. [尾递归](../../issues/9)
+8. [撸一个工具类](../../issues/12)
 
 - [RegExp](notes/RegExp/README.md)
-- 图解作用域
-- 图解闭包
 
 
 ## 翻译
