@@ -36,7 +36,9 @@
 5. [数组去重](../../issues/7)
 6. [类型判断](../../issues/8)
 7. [尾递归](../../issues/9)
-8. [撸一个工具类](../../issues/12)
+8. [时间](../../issues/14)
+9. [Promise](../../issues/15)
+10. [撸一个工具类](../../issues/12)
 
 - [RegExp](notes/RegExp/README.md)
 
