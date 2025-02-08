@@ -36,9 +36,10 @@ document.getElementById("test1").addEventListener("click",handle.handleClick.bin
 
 ```js
 function throttle(method, context){
-    clearTimeout(method.tId);
+    if(method.tId) return;
     method.tId = setTimeout(function(){
         method.call(context);
+        method.tId = 0;
     }, 200)
 }
 document.getElementById("test1").onclick = function(){
